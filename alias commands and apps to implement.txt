@@ -1,1 +1,11 @@
 
+echo "alias here : cdw (cdw C:\Users\lucan\Code\AI_media_meta_tools)"
+req: wslpath
+cdw() {
+    path="$*"
+    # Check if path is missing a backslash after the drive letter
+    if [[ "$path" =~ ^[A-Za-z]:[^\\].* ]]; then
+        path="${path:0:2}\\${path:2}"
+    fi
+    cd "$(wslpath -a "$path")"
+}
